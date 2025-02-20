@@ -4,7 +4,7 @@ int i = 7;
 int leftButton = 3;
 int rightButton = 2;
 int STATE = 1;
-int STATEWRITTEN[0] = ()
+int STATEWRITTEN[0] = ("Manual","Auto","On","Off");
 
 void setup()
 {
@@ -44,24 +44,24 @@ void manual(){
     }
     ledOn = 13;
   }
- 
+ return;
 }
 void loop()
 {
   Serial.print(i);
   Serial.println(ledOn);
-  Serial.println("CHECKING STATE")
-  if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH)){
-    void manual()
+  Serial.println("CHECKING STATE");
+  if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH));{
+    void manual();
     STATE = 1;
   }
 }
 void serialEvent(){
-  while (Serial.avaliable()) {
+  while (Serial.available()); {
     char incomingChar = Serial.read();
     Serial.print("Received: ");
     Serial.println(incomingChar);
-    Serial.print("moving to")
+    Serial.print("moving to");
     Serial.print(STATEWRITTEN[STATE--]);
   } 
 }
