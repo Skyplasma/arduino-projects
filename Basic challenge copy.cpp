@@ -1,9 +1,6 @@
-
-
-
 // C++ code
-int ledOn =8; 
-int i= 7;
+int ledOn = 8; 
+int i = 7;
 void setup()
 {
   Serial.begin(9600);
@@ -15,10 +12,7 @@ void setup()
   pinMode (2,INPUT);
   pinMode (3,INPUT);
 }
-void loop()
-{
-  Serial.print(i);
-  Serial.println(ledOn);
+void manual(){
   if (digitalRead(3)==HIGH){
     for (ledOn;ledOn<=i;ledOn++){
       digitalWrite(ledOn,HIGH);
@@ -46,4 +40,9 @@ void loop()
     ledOn = 13;
   }
 }
-
+void loop()
+{
+  Serial.print(i);
+  Serial.println(ledOn);
+  void manual()
+}
