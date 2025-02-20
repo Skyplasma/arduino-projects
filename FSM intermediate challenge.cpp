@@ -43,13 +43,14 @@ void manual(){
     }
     ledOn = 13;
   }
-  if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH)){
-    void manual()
-  }
+ 
 }
 void loop()
 {
   Serial.print(i);
   Serial.println(ledOn);
-  void manual()
+  Serial.println("CHECKING STATE")
+  if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH)){
+    void manual()
+  }
 }
