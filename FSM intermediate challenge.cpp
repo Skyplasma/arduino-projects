@@ -1,6 +1,10 @@
 // C++ code
 int ledOn = 8; 
 int i = 7;
+int leftButton = 3;
+int rightButton = 2;
+int STATE = 1;
+
 void setup()
 {
   Serial.begin(9600);
@@ -9,18 +13,18 @@ void setup()
   pinMode(10,OUTPUT);
   pinMode(11,OUTPUT);
   pinMode(12,OUTPUT);
-  pinMode (2,INPUT);
-  pinMode (3,INPUT);
+  pinMode (rightButton,INPUT);
+  pinMode (leftButton,INPUT);
 }
 void manual(){
-  if (digitalRead(3)==HIGH){
+  if (digitalRead(leftButton) == HIGH){
     for (ledOn;ledOn<=i;ledOn++){
       digitalWrite(ledOn,HIGH);
       delay(200);
     }
    i++;
   }
-  if (digitalRead(2)==HIGH){
+  if (digitalRead(rightButton) == HIGH){
     for (i;i<=ledOn;ledOn--){
       digitalWrite(ledOn,LOW);
       delay(200);
@@ -38,6 +42,9 @@ void manual(){
       digitalWrite(i,HIGH); 
     }
     ledOn = 13;
+  }
+  if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH)){
+    void manual()
   }
 }
 void loop()
