@@ -4,6 +4,7 @@ int i = 7;
 int leftButton = 3;
 int rightButton = 2;
 int STATE = 1;
+int STATEWRITTEN[0] = ()
 
 void setup()
 {
@@ -60,5 +61,7 @@ void serialEvent(){
     char incomingChar = Serial.read();
     Serial.print("Received: ");
     Serial.println(incomingChar);
+    Serial.print("moving to")
+    Serial.print(STATEWRITTEN[STATE--]);
   } 
 }
