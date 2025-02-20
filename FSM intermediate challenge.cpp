@@ -52,5 +52,13 @@ void loop()
   Serial.println("CHECKING STATE")
   if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH)){
     void manual()
+    STATE = 1;
   }
+}
+void serialEvent(){
+  while (Serial.avaliable()) {
+    char incomingChar = Serial.read();
+    Serial.print("Received: ");
+    Serial.println(incomingChar);
+  } 
 }
