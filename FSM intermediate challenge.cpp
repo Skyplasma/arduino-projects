@@ -4,7 +4,7 @@ int i = 7;
 int leftButton = 3;
 int rightButton = 2;
 int STATE = 1;
-int STATEWRITTEN[0] = ("Manual","Auto","On","Off");
+int STATEWRITTEN[0] = ("Idle","Manual","Auto","On","Off");
 
 void setup()
 {
@@ -17,7 +17,7 @@ void setup()
   pinMode (rightButton,INPUT);
   pinMode (leftButton,INPUT);
 }
-void manual(){
+void Manual(){
   if (digitalRead(leftButton) == HIGH){
     for (ledOn;ledOn<=i;ledOn++){
       digitalWrite(ledOn,HIGH);
@@ -52,9 +52,16 @@ void loop()
   Serial.println(ledOn);
   Serial.println("CHECKING STATE");
   if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH));{
-    void manual();
+    void Manual();
     STATE = 1;
   }
+}
+void wait(){
+  Serial.print("Finished");
+  Serial.println(STATEWRITTEN[STATE]); 
+  Serial.print("Possible Inputs");
+  Serial.println(STATEWRITTEN[0:4]);
+  Serial.println("Awaiting Input");
 }
 void serialEvent(){
   while (Serial.available()); {
@@ -63,5 +70,6 @@ void serialEvent(){
     Serial.println(incomingChar);
     Serial.print("moving to");
     Serial.print(STATEWRITTEN[STATE--]);
+
   } 
 }
