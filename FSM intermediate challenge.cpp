@@ -51,16 +51,15 @@ void loop()
   Serial.print(i);
   Serial.println(ledOn);
   Serial.println("CHECKING STATE");
-  if((digitalRead(rightButton) == HIGH )||(digitalRead(leftButton) == HIGH));{
-    void Manual();
-    STATE = 1;
-  }
+  void wait()
 }
 void wait(){
   Serial.print("Finished");
   Serial.println(STATEWRITTEN[STATE]); 
   Serial.print("Possible Inputs");
-  Serial.println(STATEWRITTEN[0:4]);
+  for(int a = 0;a>=4;a++){
+    Serial.print(STATEWRITTEN[a]);
+  }
   Serial.println("Awaiting Input");
 }
 void serialEvent(){
