@@ -17,7 +17,7 @@ void setup()
   pinMode (rightButton,INPUT);
   pinMode (leftButton,INPUT);
 }
-void Manual(){
+int Manual(){
   if (digitalRead(leftButton) == HIGH){
     for (ledOn;ledOn<=i;ledOn++){
       digitalWrite(ledOn,HIGH);
@@ -46,7 +46,7 @@ void Manual(){
   }
  return;
 }
-void wait(){
+void Wait(){
   Serial.print("Finished");
   Serial.println(STATEWRITTEN[STATE]); 
   Serial.print("Possible Inputs");
