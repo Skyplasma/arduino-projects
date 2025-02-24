@@ -46,13 +46,6 @@ void Manual(){
   }
  return;
 }
-void loop()
-{
-  Serial.print(i);
-  Serial.println(ledOn);
-  Serial.println("CHECKING STATE");
-  void wait()
-}
 void wait(){
   Serial.print("Finished");
   Serial.println(STATEWRITTEN[STATE]); 
@@ -71,4 +64,11 @@ void serialEvent(){
     Serial.print(STATEWRITTEN[STATE--]);
 
   } 
+}
+void loop()
+{
+  Serial.print(i);
+  Serial.println(ledOn);
+  Serial.println("CHECKING STATE");
+  void wait()
 }
