@@ -10,7 +10,7 @@ int STATEWRITTEN[0] = ("Idle","Manual","Auto","On","Off");
 void setup()
 {
   Serial.begin(9600);
-  for (pinset=8;pinset == 14;pinset++){
+  for (int pinset=8;pinset == 14;pinset++){
   pinMode(pinset,OUTPUT);
   }
   pinMode (rightButton,INPUT);
