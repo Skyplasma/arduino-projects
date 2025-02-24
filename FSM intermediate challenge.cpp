@@ -6,14 +6,13 @@ int rightButton = 2;
 int STATE = 1;
 int STATEWRITTEN[0] = ("Idle","Manual","Auto","On","Off");
 
+
 void setup()
 {
   Serial.begin(9600);
-  pinMode(8,OUTPUT);
-  pinMode(9,OUTPUT);
-  pinMode(10,OUTPUT);
-  pinMode(11,OUTPUT);
-  pinMode(12,OUTPUT);
+  for (pinset;pinset == 14;pinset++){
+  pinMode(pinset,OUTPUT);
+  }
   pinMode (rightButton,INPUT);
   pinMode (leftButton,INPUT);
 }
