@@ -69,5 +69,6 @@ void loop()
   Serial.print(i);
   Serial.println(ledOn);
   Serial.println("CHECKING STATE");
+  Serial.println(STATE);
   void wait()
 }
