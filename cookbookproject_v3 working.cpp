@@ -30,16 +30,9 @@ void loop() {
   Serial.print(" Difference: ");
   Serial.println(foo2);
   
-  incrementDown();
   
-  sensorVibes();
-  
-  digitUp();
-  
-  digitDown();
-  
-  incrementUp();
-  
+  sensorUp();
+  SensorDown();
 }
 
 void incrementDown(){
