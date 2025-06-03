@@ -85,7 +85,7 @@ void sensorUp(){
     // Check if the increment button is pressed
   if (digitalRead(3) == HIGH) {
     current++;
-    incrementUp():
+    incrementUp();
     digitUp();
     delay(250);  // Debounce delay for button press
   }
@@ -95,7 +95,7 @@ void SensorDown(){
     // Check if the decrement button is pressed
     if ((digitalRead(2) == HIGH)&&(current != 1)) {
     current--;
-    incrementDown():
+    incrementDown();
     digitDown();
     delay(250);  // Debounce delay for button press
   }
