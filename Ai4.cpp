@@ -3,13 +3,15 @@ int enableB = 8;
 int in1 = 12;
 int in2 = 11;
 int in3 = 10;
-int in4 = 7;
+int in4 = 9;
 
 int speed;
 
 void setup() {
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
   speed = 255;
 }
 void loop() {
