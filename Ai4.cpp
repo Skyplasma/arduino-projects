@@ -3,7 +3,7 @@ int enableB = 8;
 int in1 = 12;
 int in2 = 11;
 int in3 = 10;
-int in4 = 9;
+int in4 = 7;
 
 int speed;
 
