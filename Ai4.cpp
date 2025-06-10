@@ -15,11 +15,13 @@ void setup() {
   speed = 255;
 }
 void loop() {
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  for (int i = 0; i <= 123; i++) {
+  analogWrite(enableA, speed);
+  analogWrite(enableB, speed);
+ /* for (int i = 0; i <= 123; i++) {
     analogWrite(enableA, speed - i);
     analogWrite(enableB, speed);
     delay(50);
@@ -33,5 +35,5 @@ void loop() {
     analogWrite(enableA, speed - i);
     analogWrite(enableB, speed);
     delay(50);
-  }
+  }*/
 }
