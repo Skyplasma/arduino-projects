@@ -21,11 +21,11 @@ void setup() {
 void loop() {
 
 motorA.write(onwards(100));
-motorB.write(onwards(100));
-delay(2000);
-motorA.write(onwards(-100));
 motorB.write(onwards(-100));
-delay(2000);
+delay(20);
+motorA.write(onwards(-100));
+motorB.write(onwards(100));
+delay(20);
 
 }
 
