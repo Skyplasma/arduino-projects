@@ -1,34 +1,50 @@
 #include "MotorController.h"
 
-int enableA = 13;
-int enableB = 8;
-int in1 = 12;
-int in2 = 11;
-int in3 = 10;
-int in4 = 9;
 
-DCMotorController motorA = DCMotorController(enableA,in1,in2);//pwmPin, in1, in2
-DCMotorController motorB = DCMotorController(enableB,in3,in4);//pwmPin, in1, in2
+DCMotorController motor1 = DCMotorController(13, 12, 11); // pwmPin, in1, in2
+DCMotorController motor2 = DCMotorController(8, 10, 9); // pwmPin, in1, in2
 
 
-void setup() {
-  pinMode(in1, OUTPUT);
-  pinMode(in2, OUTPUT);
-  pinMode(in3, OUTPUT);
-  pinMode(in4, OUTPUT);
+void setup(){
+  pinMode(12, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+  Serial.begin(9600);
+
+  motor1.forward(goNess(100));
+  motor2.forward(goNess(70));
+  Serial.println(goNess(100));
+  delay(2500);
+
+  motor1.reverse(goNess(50));
+  motor2.forward(goNess(50));
+  Serial.println(goNess(80));
+  delay(175);
+
+  motor1.forward(goNess(100));
+  motor2.forward(goNess(70));
+  Serial.println(goNess(60));
+  delay(1000);
+
+  motor1.reverse(goNess(30));
+  motor2.forward(goNess(30));
+  Serial.println(goNess(80));
+  delay(110);
+
+  motor1.forward(goNess(100));
+  motor2.forward(goNess(70));
+  Serial.println(goNess(60));
+  delay(1500);
 }
 
-void loop() {
 
-motorA.write(onwards(100));
-motorB.write(onwards(-100));
-delay(20);
-motorA.write(onwards(-100));
-motorB.write(onwards(100));
-delay(20);
+void loop()
+{
+  
 
 }
 
-int onwards(int i){
-return map(i,-100,100,-255,255);
+int goNess(int blah){
+  return map(blah, 0, 100, 0, 255);
 }
