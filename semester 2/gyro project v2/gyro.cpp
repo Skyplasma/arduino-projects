@@ -84,7 +84,7 @@ void loop() {
   //mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
   //mpu.getAcceleration(&ax, &ay, &az);
   //mpu.getRotation(&gx, &gy, &gz);
-  mpu.getAccelerationX(ax);
+  mpu.getAccelerationX(&ax);
 
   /*Print the obtained data on the defined format*/
   #ifdef OUTPUT_READABLE_ACCELGYRO
