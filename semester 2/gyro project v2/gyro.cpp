@@ -23,7 +23,7 @@ X/Y/Z and gyro X/Y/Z values in decimal. Easy to read, but not so easy to parse, 
 As fast as possible without compression or data loss, easy to parse, but impossible to read for a human. 
 This output format is used as an output.
 --------------------------------------------------------------------------------------------------------------*/ 
-#define OUTPUT_READABLE_ACCELGYRO
+#define OUTPUT_READABLE_ACCELGYRO 1
 //#define OUTPUT_BINARY_ACCELGYRO
 
 int16_t ax, ay, az;
@@ -81,19 +81,20 @@ void setup() {
 
 void loop() {
   /* Read raw accel/gyro data from the module. Other methods commented*/
-  mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+  //mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
   //mpu.getAcceleration(&ax, &ay, &az);
   //mpu.getRotation(&gx, &gy, &gz);
+  mpu.getAccelerationX(ax);
 
   /*Print the obtained data on the defined format*/
   #ifdef OUTPUT_READABLE_ACCELGYRO
     Serial.print("a/g:\t");
     Serial.print(ax); Serial.print("\t");
-    Serial.print(ay); Serial.print("\t");
-    Serial.print(az); Serial.print("\t");
-    Serial.print(gx); Serial.print("\t");
-    Serial.print(gy); Serial.print("\t");
-    Serial.println(gz);
+  //  Serial.print(ay); Serial.print("\t");
+  //  Serial.print(az); Serial.print("\t");
+  //  Serial.print(gx); Serial.print("\t");
+   // Serial.print(gy); Serial.print("\t");
+  //  Serial.println(gz);
   #endif
 
   #ifdef OUTPUT_BINARY_ACCELGYRO
@@ -108,4 +109,5 @@ void loop() {
   /*Blink LED to indicate activity*/
   blinkState = !blinkState;
   digitalWrite(LED_BUILTIN, blinkState);
+  delay(100);
 }
