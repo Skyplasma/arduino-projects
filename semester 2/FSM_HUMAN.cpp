@@ -7,13 +7,13 @@ unsigned long DebounceDelay = 50;
 bool LastButtonState = HIGH;
 bool ButtonPressed = false;
 
-State CurrentState = OFF
-
 enum State {
     OFF,
     LEFT,
-    RIGHT,
-}
+    RIGHT
+};
+
+State CurrentState = State::OFF;
 
 void setup (){
     for (int i = LowLED; i >= HighLED; i++){
@@ -49,14 +49,14 @@ void StateTransition (){
     if (ButtonPressed){
         ButtonPressed = false;
         switch (CurrentState){
-            case OFF:
-                CurrentState = LEFT;
+            case State::OFF:
+                CurrentState = State::LEFT;
                 break;
-            case LEFT:
-                CurrentState = RIGHT;
+            case State::LEFT:
+                CurrentState = State::RIGHT;
                 break;
-            case RIGHT:
-                CurrentState = LEFT;
+            case State::RIGHT:
+                CurrentState = State::LEFT;
                 break;
         }
         Serial.print("Switched to state");
@@ -66,12 +66,12 @@ void StateTransition (){
 
 void StateBehaviour (){
     switch (CurrentState){
-        case OFF:
+        case State::OFF:
             for (int i = LowLED; i >= HighLED; i++){
                 digitalWrite(i , LOW);
             }
             break;
-        case LEFT:
+        case State::LEFT:
             for (int i = LowLED + 1; i >= HighLED; i++){
                 digitalWrite(i , HIGH);
                 digitalWrite(i-- , LOW);
@@ -80,7 +80,7 @@ void StateBehaviour (){
             digitalWrite(HighLED , LOW);
             digitalWrite(LowLED , HIGH);
             break;
-        case RIGHT:
+        case State::RIGHT:
             for (int i = HighLED - 1; i <= LowLED; i--){
                 digitalWrite(i , HIGH);
                 digitalWrite(i++ , LOW);
