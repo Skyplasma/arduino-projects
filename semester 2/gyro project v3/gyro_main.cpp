@@ -1,7 +1,14 @@
 #include "Wire.h"
+#include "Mouse.h"
 
-const int MPU_ADDR=0x68;
+//pinout
+const int MPU_ADDR = 0x68;
+const int Jstick_X = A0;
+const int Jstick_Y = A1;
+const int Jstick_button = 2;
 
+
+//gyro variables
 int16_t accle_x, accle_y,  accle_z;
 int16_t gyro_x, gyro_y, gyro_z;
 int16_t temperature;
@@ -45,4 +52,8 @@ void loop() {
     Serial.print(" | gZ = "); Serial.print(convert_int16_to_str(gyro_z));
     Serial.println();
     delay(1000);
+}
+
+void mpu6050read() {
+    
 }
