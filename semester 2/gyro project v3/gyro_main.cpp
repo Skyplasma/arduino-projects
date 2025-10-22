@@ -13,7 +13,7 @@ int16_t accle_x, accle_y,  accle_z;
 int16_t gyro_x, gyro_y, gyro_z;
 int16_t temperature;
 
-char tmp_str[7]
+char tmp_str[7];
 
 char* convert_int16_to_str(int16_t i) {
     sprintf(tmp_str, "%6d", i);
@@ -24,7 +24,7 @@ void setup() {
     Serial.begin(9600);
     Wire.begin();
     Wire.beginTransmission(MPU_ADDR);
-    Wire.write(0x68);
+    Wire.write(0x6B);
     Wire.write(0);
     Wire.endTransmission(true);
 }
