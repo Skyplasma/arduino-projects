@@ -13,12 +13,9 @@ int16_t accle_x, accle_y,  accle_z;
 int16_t gyro_x, gyro_y, gyro_z;
 int16_t temperature;
 
-char tmp_str[7];
-
-char* convert_int16_to_str(int16_t i) {
-    sprintf(tmp_str, "%6d", i);
-    return tmp_str;
-}
+//sensitivity values
+const int register_value = 6000;
+const int drag_sens = 500;
 
 void setup() {
     Serial.begin(9600);
@@ -27,6 +24,8 @@ void setup() {
     Wire.write(0x6B);
     Wire.write(0);
     Wire.endTransmission(true);
+
+    Mouse.begin();
 }
 
 void loop() {
@@ -43,17 +42,37 @@ void loop() {
     gyro_y = Wire.read()<<8 | Wire.read();
     gyro_z = Wire.read()<<8 | Wire.read();
 
-    Serial.print("aX = "); Serial.print(convert_int16_to_str(accle_x));
-    Serial.print(" | aY = "); Serial.print(convert_int16_to_str(accle_y));
-    Serial.print(" | aZ = "); Serial.print(convert_int16_to_str(accle_z));
-    Serial.print(" | tmp = "); Serial.print(convert_int16_to_str(temperature));
-    Serial.print(" | gX = "); Serial.print(convert_int16_to_str(gyro_x));
-    Serial.print(" | gY = "); Serial.print(convert_int16_to_str(gyro_y));
-    Serial.print(" | gZ = "); Serial.print(convert_int16_to_str(gyro_z));
+    Serial.print("aX = "); Serial.print(accle_x);
+    Serial.print(" | aY = "); Serial.print(accle_y);
+    Serial.print(" | aZ = "); Serial.print(accle_z);
+    Serial.print(" | tm = "); Serial.print(Total_Movement());
+    Serial.print(" | gX = "); Serial.print(gyro_x);
+    Serial.print(" | gY = "); Serial.print(gyro_y);
+    Serial.print(" | gZ = "); Serial.print(gyro_z);
     Serial.println();
-    delay(1000);
+    delay(10);
+
+    Mouse_Move();
+    Mouse_Click();
 }
 
-void mpu6050read() {
-    
+
+int Total_Movement(){
+  int i = (abs(accle_y) + abs(accle_z));
+  return i;
+}
+
+void Mouse_Move(){
+    if(Total_Movement() >= register_value){
+      Mouse.move((accle_y/drag_sens),(accle_z/drag_sens));
+    };
+}
+
+void Mouse_Click(){
+  if ((gyro_x<0) && (abs(gyro_x)>4000)){
+    Mouse.click();
+  }
+  if ((gyro_x>0) && (abs(gyro_x)>4000)){
+    Mouse.click(MOUSE_RIGHT);
+  }
 }
