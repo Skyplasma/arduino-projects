@@ -19,11 +19,12 @@ const int drag_sens = 1250;
 const int gyro_sens = 16000;
 const int gyro_x_calibrate = 650;
 const int grav_calibrate = 15000;
-int Left_Measure;
-int Right_Measure;
+int Left_Measure = 0;
+int Right_Measure = 0;
 
 void setup() {
   Serial.begin(9600);
+  while (!Serial){};
   Wire.begin();
   Wire.beginTransmission(MPU_ADDR);
   Wire.write(0x6B);
@@ -62,6 +63,9 @@ void loop() {
   Serial.print(" | gZ = ");
   Serial.print(gyro_z);
   Serial.println();
+  Serial.print(Left_Measure);
+  Serial.print("   |   ");
+  Serial.println(Right_Measure);
   delay(10);
 
   Mouse_Move();
@@ -82,20 +86,20 @@ void Mouse_Move() {
 }
 
 void Measure() {
-  if ((gyro_x + gyro_x_calibrate) < -75) {
+  if ((gyro_x + gyro_x_calibrate) < -16384) {
     Left_Measure = Left_Measure + gyro_x + gyro_x_calibrate;
   }
-  if ((gyro_x + gyro_x_calibrate) > 75) {
+  if ((gyro_x + gyro_x_calibrate) > 16384) {
     Right_Measure = Right_Measure + gyro_x + gyro_x_calibrate;
   }
 }
 
 void Mouse_Click() {
-  if ((gyro_x + gyro_x_calibrate  < 0) && (abs(gyro_x + gyro_x_calibrate) > (gyro_sens + abs(Right_Measure)))) {
+  if ((gyro_x + gyro_x_calibrate  > 0) && (abs(gyro_x + gyro_x_calibrate) > (gyro_sens + abs(Right_Measure)))) {
     Mouse.click();
     Right_Measure = 0;
   }
-  if ((gyro_x + gyro_x_calibrate > 0) && (abs(gyro_x + gyro_x_calibrate) > (gyro_sens + abs(Left_Measure)))) {
+  if ((gyro_x + gyro_x_calibrate < 0) && (abs(gyro_x + gyro_x_calibrate) > (gyro_sens + abs(Left_Measure)))) {
     Mouse.click(MOUSE_RIGHT);
     Left_Measure = 0;
   }
