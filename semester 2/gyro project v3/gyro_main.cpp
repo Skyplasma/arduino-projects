@@ -15,8 +15,10 @@ int16_t temperature;
 
 //sensitivity values
 const int register_value = 6000;
-const int drag_sens = 500;
-const int gyro_sens = 4000;
+const int drag_sens = 1250;
+const int gyro_sens = 16000;
+const int gyro_x_calibrate = 650;
+const int grav_calibrate = 15000;
 int Left_Measure;
 int Right_Measure;
 
@@ -80,21 +82,21 @@ void Mouse_Move() {
 }
 
 void Measure() {
-  if (gyro_x < 0) {
-    Left_Measure = Left_Measure + gyro_x;
+  if ((gyro_x + gyro_x_calibrate) < -75) {
+    Left_Measure = Left_Measure + gyro_x + gyro_x_calibrate;
   }
-  if (gyro_x > 0) {
-    Right_Measure = Right_Measure + gyro_x;
+  if ((gyro_x + gyro_x_calibrate) > 75) {
+    Right_Measure = Right_Measure + gyro_x + gyro_x_calibrate;
   }
 }
 
 void Mouse_Click() {
-  if ((gyro_x < 0) && (abs(gyro_x) > (gyro_sens + Right_Measure))) {
+  if ((gyro_x + gyro_x_calibrate  < 0) && (abs(gyro_x + gyro_x_calibrate) > (gyro_sens + abs(Right_Measure)))) {
     Mouse.click();
-    Left_Measure = 0;
-  }
-  if ((gyro_x > 0) && (abs(gyro_x) > (gyro_sens + Left_Measure))) {
-    Mouse.click(MOUSE_RIGHT);
     Right_Measure = 0;
+  }
+  if ((gyro_x + gyro_x_calibrate > 0) && (abs(gyro_x + gyro_x_calibrate) > (gyro_sens + abs(Left_Measure)))) {
+    Mouse.click(MOUSE_RIGHT);
+    Left_Measure = 0;
   }
 }
