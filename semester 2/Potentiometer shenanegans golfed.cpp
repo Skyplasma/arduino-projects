@@ -1,7 +1,5 @@
 void setup(){
-  for(int i = 6;i<=11;i++){
-   pinMode(i,OUTPUT); 
-  }
+  for(int i = 6;i<=11;i++) pinMode(i,OUTPUT); 
 }
 void loop(){
   digitalWrite(map(analogRead(A0),0,1023,8,6),HIGH);
